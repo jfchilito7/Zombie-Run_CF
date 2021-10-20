@@ -1,0 +1,84 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://sprites/correr/Run7.png" type="Texture" id=1]
+[ext_resource path="res://sprites/correr/Run8.png" type="Texture" id=2]
+[ext_resource path="res://sprites/game_background_1.png" type="Texture" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=4]
+[ext_resource path="res://sprites/muerto/Dead6.png" type="Texture" id=5]
+[ext_resource path="res://Zombie1.gd" type="Script" id=6]
+[ext_resource path="res://sprites/correr/Run6.png" type="Texture" id=7]
+[ext_resource path="res://sprites/correr/Run5.png" type="Texture" id=8]
+[ext_resource path="res://sprites/correr/Run9.png" type="Texture" id=9]
+[ext_resource path="res://sprites/muerto/Dead4.png" type="Texture" id=10]
+[ext_resource path="res://sprites/muerto/Dead5.png" type="Texture" id=11]
+[ext_resource path="res://sprites/correr/Hurt1.png" type="Texture" id=12]
+[ext_resource path="res://sprites/muerto/Dead7.png" type="Texture" id=13]
+[ext_resource path="res://sprites/muerto/Dead8.png" type="Texture" id=14]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "correr",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "parado",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": false,
+"name": "muerto",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 30.8946, 62.3583 )
+
+[node name="Main" type="Node"]
+script = ExtResource( 4 )
+
+[node name="game_background_1" type="Sprite" parent="."]
+position = Vector2( 639.513, 479.617 )
+scale = Vector2( 0.332322, 0.44113 )
+texture = ExtResource( 3 )
+
+[node name="Zombie1" type="Area2D" parent="."]
+position = Vector2( 143.089, 617.278 )
+script = ExtResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Zombie1"]
+position = Vector2( 90.7905, 0.481506 )
+scale = Vector2( 0.339876, 0.339876 )
+frames = SubResource( 3 )
+animation = "muerto"
+frame = 4
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zombie1"]
+position = Vector2( 85.3466, 3.75824 )
+shape = SubResource( 2 )
+
+[node name="Puntos" type="Label" parent="."]
+margin_left = 79.4574
+margin_top = 407.827
+margin_right = 239.457
+margin_bottom = 421.827
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+text = "Puntos: 0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Record" type="Label" parent="."]
+margin_left = 319.559
+margin_top = 409.095
+margin_right = 387.559
+margin_bottom = 423.095
+text = "Record: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
